@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Magic open book -->
+    <path
+        android:fillColor="#FEF08A"
+        android:pathData="M32,68 C38,65 46,65 54,68 C62,65 70,65 76,68 L76,46 C70,43 62,43 54,46 C46,43 38,43 32,46 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,66 C39,63.5 46,63.5 53,66 L53,47 C46,44.5 39,44.5 34,47 Z" />
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M74,66 C69,63.5 62,63.5 55,66 L55,47 C62,44.5 69,44.5 74,47 Z" />
+    <path
+        android:fillColor="#E2E8F0"
+        android:pathData="M53.5,45 L54.5,45 L54.5,68 L53.5,68 Z" />
+
+    <!-- Magic Star Wand / Sparkles -->
+    <!-- Star 1 -->
+    <path
+        android:fillColor="#FDE047"
+        android:pathData="M54,26 L56,32 L62,32 L57,36 L59,42 L54,38 L49,42 L51,36 L46,32 L52,32 Z" />
+    <!-- Sparkle small left -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M36,32 L37.5,35 L40.5,35 L38,37 L39,40 L36,38 L33,40 L34,37 L31.5,35 L34.5,35 Z" />
+    <!-- Sparkle small right -->
+    <path
+        android:fillColor="#FB7185"
+        android:pathData="M72,34 L73.5,37 L76.5,37 L74,39 L75,42 L72,40 L69,42 L70,39 L67.5,37 L70.5,37 Z" />
+
+    <!-- Floating Letter A -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M40,59 L43,59 L43.8,61.5 L46,61.5 L42.5,51 L40.5,51 L37,61.5 L39.2,61.5 Z M41.5,53.5 L42.5,57 L40.5,57 Z" />
+    <!-- Floating Letter B -->
+    <path
+        android:fillColor="#EC4899"
+        android:pathData="M48,51 L51.5,51 C53,51 54,51.8 54,53 C54,53.8 53.5,54.5 52.5,54.8 C53.8,55.2 54.5,56 54.5,57.2 C54.5,58.8 53.2,59.5 51.5,59.5 L48,59.5 Z M50,54.5 L51.2,54.5 C52,54.5 52.6,54.1 52.6,53.5 C52.6,52.8 52,52.5 51.2,52.5 L50,52.5 Z M50,58 L51.5,58 C52.4,58 53,57.5 53,56.8 C53,56 52.4,55.5 51.5,55.5 L50,55.5 Z" />
+    <!-- Floating Letter C -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M64,53.5 C63.2,52.2 61.8,51.5 60.2,51.5 C57.8,51.5 56,53.2 56,56.2 C56,59.2 57.8,61 60.2,61 C61.8,61 63.2,60.2 64,58.8 L62.5,57.8 C62,58.8 61.2,59.2 60.2,59.2 C58.8,59.2 57.8,58 57.8,56.2 C57.8,54.5 58.8,53.2 60.2,53.2 C61.2,53.2 62,53.7 62.5,54.6 Z" />
+</vector>

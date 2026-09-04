@@ -1,0 +1,6 @@
+{
+  "name": "SpellQuest",
+  "description": "Gamified elementary spelling mastery app with weekly custom lists, spaced repetition, multi-sensory practice modes, XP, streaks, and badges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
