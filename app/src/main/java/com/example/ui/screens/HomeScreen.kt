@@ -38,10 +38,12 @@ import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
 import com.example.data.model.SpellerSuperpowers
+import com.example.ui.components.SpellerSuperpowerQuizDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -123,12 +125,14 @@ fun HomeScreen(
     onNavigateToParentZone: () -> Unit,
     onNavigateToParentGuided: () -> Unit,
     onNavigateToOnboarding: (String) -> Unit = {},
-    onAddRequiredWords: (String) -> Unit = {}
+    onAddRequiredWords: (String) -> Unit = {},
+    onUpdateSuperpower: (String) -> Unit = {}
 ) {
     var showParentGate by remember { mutableStateOf(false) }
     var showQuickAddDialog by remember { mutableStateOf(false) }
     var showPhotoScanDialog by remember { mutableStateOf(false) }
     var showSuperpowerDialog by remember { mutableStateOf(false) }
+    var showSuperpowerQuizDialog by remember { mutableStateOf(false) }
     var showStreakDialog by remember { mutableStateOf(false) }
     var selectedBottomNav by remember { mutableIntStateOf(0) }
     var selectedLearningModeTab by remember { mutableIntStateOf(0) } // 0 = Self-Guided, 1 = Parent-Guided
@@ -1434,14 +1438,41 @@ fun HomeScreen(
                 }
             },
             confirmButton = {
-                Button(
-                    onClick = { showSuperpowerDialog = false },
-                    colors = ButtonDefaults.buttonColors(containerColor = BentoPrimary)
-                ) {
-                    Text("Awesome! 🌟", color = Color.White)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = {
+                            showSuperpowerDialog = false
+                            showSuperpowerQuizDialog = true
+                        }
+                    ) {
+                        Icon(
+                            Icons.Default.AutoAwesome,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text("Quiz Me! 🪄")
+                    }
+                    Button(
+                        onClick = { showSuperpowerDialog = false },
+                        colors = ButtonDefaults.buttonColors(containerColor = BentoPrimary)
+                    ) {
+                        Text("Awesome! 🌟", color = Color.White)
+                    }
                 }
             },
             shape = RoundedCornerShape(20.dp)
+        )
+    }
+
+    if (showSuperpowerQuizDialog) {
+        SpellerSuperpowerQuizDialog(
+            currentSuperpowerTitle = userStats.spellerSuperpower,
+            onDismiss = { showSuperpowerQuizDialog = false },
+            onSuperpowerEquipped = { power ->
+                onUpdateSuperpower("${power.name} ${power.emoji}")
+                showSuperpowerQuizDialog = false
+            }
         )
     }
 

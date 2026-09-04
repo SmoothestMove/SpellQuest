@@ -453,6 +453,15 @@ class SpellingRepository(
         )
     }
 
+    suspend fun updateStudentSuperpower(superpower: String) {
+        val stats = dao.getUserStats().firstOrNull() ?: UserStats(id = 1)
+        dao.insertOrUpdateUserStats(
+            stats.copy(
+                spellerSuperpower = superpower.ifBlank { "Sound Detective 🔍" }
+            )
+        )
+    }
+
     suspend fun completeOnboarding(
         studentName: String,
         avatar: String,

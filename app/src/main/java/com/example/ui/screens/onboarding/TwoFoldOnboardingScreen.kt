@@ -37,6 +37,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Info
@@ -44,6 +45,7 @@ import androidx.compose.material3.AlertDialog
 import com.example.data.model.SpellerSuperpower
 import com.example.data.model.SpellerSuperpowers
 import com.example.ui.components.PhotoScanDialog
+import com.example.ui.components.SpellerSuperpowerQuizDialog
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
@@ -918,6 +920,7 @@ private fun ChildProfileStep(
     onTitleSelect: (String) -> Unit
 ) {
     var showSuperpowerDialog by remember { mutableStateOf(false) }
+    var showQuizDialog by remember { mutableStateOf(false) }
 
     val activePower = SpellerSuperpowers.getByIdOrTitle(selectedTitle)
 
@@ -1053,6 +1056,41 @@ private fun ChildProfileStep(
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))
+
+                    // 90-Second Superpower Quiz Button
+                    Button(
+                        onClick = { showQuizDialog = true },
+                        colors = ButtonDefaults.buttonColors(containerColor = BentoPrimary),
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(44.dp)
+                            .testTag("take_superpower_quiz_onboarding")
+                    ) {
+                        Icon(
+                            Icons.Default.AutoAwesome,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Take 90-Sec Superpower Quiz 🪄",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "— or choose your superpower directly —",
+                        fontSize = 11.sp,
+                        color = BentoTextSecondary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
                     // Grid/List of 4 Superpowers
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -1196,12 +1234,33 @@ private fun ChildProfileStep(
                 }
             },
             confirmButton = {
-                Button(
-                    onClick = { showSuperpowerDialog = false },
-                    colors = ButtonDefaults.buttonColors(containerColor = BentoPrimary)
-                ) {
-                    Text("Got It! 🌟", color = Color.White)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = {
+                            showSuperpowerDialog = false
+                            showQuizDialog = true
+                        }
+                    ) {
+                        Text("Take Quiz 🪄")
+                    }
+                    Button(
+                        onClick = { showSuperpowerDialog = false },
+                        colors = ButtonDefaults.buttonColors(containerColor = BentoPrimary)
+                    ) {
+                        Text("Got It! 🌟", color = Color.White)
+                    }
                 }
+            }
+        )
+    }
+
+    if (showQuizDialog) {
+        SpellerSuperpowerQuizDialog(
+            currentSuperpowerTitle = selectedTitle,
+            onDismiss = { showQuizDialog = false },
+            onSuperpowerEquipped = { power ->
+                onTitleSelect("${power.name} ${power.emoji}")
+                showQuizDialog = false
             }
         )
     }

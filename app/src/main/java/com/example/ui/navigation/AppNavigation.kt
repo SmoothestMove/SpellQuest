@@ -122,6 +122,9 @@ fun AppNavigation(
                 onNavigateToOnboarding = { phase -> navController.navigate("${Routes.ONBOARDING}/$phase") },
                 onAddRequiredWords = { wordsRaw ->
                     viewModel.addRequiredWords(wordsRaw)
+                },
+                onUpdateSuperpower = { powerTitle ->
+                    viewModel.updateStudentSuperpower(powerTitle)
                 }
             )
         }

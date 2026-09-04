@@ -344,6 +344,12 @@ class SpellingViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun updateStudentSuperpower(superpower: String) {
+        viewModelScope.launch {
+            repository.updateStudentSuperpower(superpower)
+        }
+    }
+
     fun completeOnboarding(
         studentName: String,
         avatar: String,
